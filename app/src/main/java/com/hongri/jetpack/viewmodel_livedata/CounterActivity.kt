@@ -1,4 +1,4 @@
-package com.hongri.jetpack.viewmodel
+package com.hongri.jetpack.viewmodel_livedata
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.hongri.jetpack.R
 
@@ -29,23 +29,20 @@ class CounterActivity : AppCompatActivity() {
         clearBtn = findViewById(R.id.clearBtn)
 
         plusBtn.setOnClickListener {
-            viewModel.counter++
-            refreshCounter()
+            viewModel.plusOne()
         }
 
         clearBtn.setOnClickListener {
-            viewModel.counter = 0
-            refreshCounter()
+            viewModel.clear()
         }
-        refreshCounter()
-    }
 
-    private fun refreshCounter() {
-        infoText.text = viewModel.counter.toString()
+        viewModel.counter.observe(this, Observer { count ->
+            infoText.text = count.toString()
+        })
     }
 
     override fun onPause() {
         super.onPause()
-        sp.edit().putInt("count_reserved", viewModel.counter).apply()
+        sp.edit().putInt("count_reserved", viewModel.counter.value ?: 0).apply()
     }
 }

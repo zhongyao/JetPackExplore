@@ -1,4 +1,4 @@
-package com.hongri.jetpack.viewmodel
+package com.hongri.jetpack.viewmodel_livedata
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

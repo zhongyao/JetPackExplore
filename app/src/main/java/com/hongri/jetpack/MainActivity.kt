@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.hongri.jetpack.viewmodel.CounterActivity
+import com.hongri.jetpack.viewmodel_livedata.CounterActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModelBtn: Button
