@@ -7,6 +7,9 @@ import androidx.lifecycle.ViewModel
 class CounterViewModel(countReserved: Int) : ViewModel() {
 
     val counter: LiveData<Int> get() = _counter
+    /**
+     * LiveData【响应式编程组件】：可以包含任何类型的数据，并在数据发生变化的时候通知给观察者
+     */
     private val _counter = MutableLiveData<Int>()
 
     init {

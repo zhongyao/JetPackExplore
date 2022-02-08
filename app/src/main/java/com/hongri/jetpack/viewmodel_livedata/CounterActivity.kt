@@ -36,6 +36,10 @@ class CounterActivity : AppCompatActivity() {
             viewModel.clear()
         }
 
+        /**
+         * 关键：这里调用了ViewModel.counter的observe()方法来观察数据的变化
+         * 【其counter变量现在已是一个LiveData对象】
+         */
         viewModel.counter.observe(this, Observer { count ->
             infoText.text = count.toString()
         })
