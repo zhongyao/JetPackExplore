@@ -26,5 +26,15 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/viewModelBtn" />
 
+    <Button
+        android:id="@+id/lifeCycleBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="lifeCycle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/liveDataBtn" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
