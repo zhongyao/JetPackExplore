@@ -14,6 +14,7 @@ class RoomActivity : AppCompatActivity() {
     private val TAG = "RoomActivity";
     private lateinit var getUserBtn: Button
     private lateinit var addDataBtn: Button
+    private lateinit var addBookBtn: Button
     private lateinit var updateDataBtn: Button
     private lateinit var deleteDataBtn: Button
     private lateinit var queryDataBtn: Button
@@ -23,6 +24,7 @@ class RoomActivity : AppCompatActivity() {
 
         getUserBtn = findViewById(R.id.queryDataBtn)
         addDataBtn = findViewById(R.id.addDataBtn)
+        addBookBtn = findViewById(R.id.addBookBtn)
         updateDataBtn = findViewById(R.id.updateDataBtn)
         deleteDataBtn = findViewById(R.id.deleteDataBtn)
         queryDataBtn = findViewById(R.id.queryDataBtn)
@@ -31,10 +33,21 @@ class RoomActivity : AppCompatActivity() {
         val user1 = User("zhong", "yao", 18)
         val user2 = User("cheng", "long", 60)
 
+        val bookDao = AppDatabase.getDatabase(this).bookDao()
+        val book1 = Book("平凡的世界", 780)
+        val book2 = Book("西游记", 460)
+
         addDataBtn.setOnClickListener {
             thread {
                 user1.id = userDao.insertUser(user1)
                 user2.id = userDao.insertUser(user2)
+            }
+        }
+
+        addBookBtn.setOnClickListener {
+            thread {
+                book1.id = bookDao.insertBook(book1)
+                book2.id = bookDao.insertBook(book2)
             }
         }
 
@@ -55,6 +68,10 @@ class RoomActivity : AppCompatActivity() {
             thread {
                 for (user in userDao.loadAllUsers()) {
                     Log.d(TAG, user.toString())
+                }
+
+                for (book in bookDao.loadAllBooks()) {
+                    Log.d(TAG, book.toString())
                 }
             }
         }
