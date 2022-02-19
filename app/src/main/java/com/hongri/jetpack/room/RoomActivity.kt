@@ -34,8 +34,8 @@ class RoomActivity : AppCompatActivity() {
         val user2 = User("cheng", "long", 60)
 
         val bookDao = AppDatabase.getDatabase(this).bookDao()
-        val book1 = Book("平凡的世界", 780)
-        val book2 = Book("西游记", 460)
+        val book1 = Book("平凡的世界", 780, "路遥")
+        val book2 = Book("西游记", 460, "吴承恩")
 
         addDataBtn.setOnClickListener {
             thread {

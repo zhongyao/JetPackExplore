@@ -13,7 +13,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
  * 2、包含哪些实体类
  * 3、提供Dao层的访问实例
  */
-@Database(version = 2, entities = [User::class, Book::class])
+@Database(version = 3, entities = [User::class, Book::class])
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
@@ -21,10 +21,17 @@ abstract class AppDatabase : RoomDatabase() {
 
     companion object {
 
-        //数据库升级
+        //数据库升级 1-2:添加一个Book表
         private val MIGRATION_1_2 = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 database.execSQL("create table Book(id integer primary key autoincrement not null, name text not null, pages integer not null)")
+            }
+        }
+
+        //数据库升级 2-3:Book表中添加一个字段author
+        private val MIGRATION_2_3 = object : Migration(2, 3) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("alter table Book add column author text not null default 'unknown'")
             }
         }
 
@@ -37,7 +44,7 @@ abstract class AppDatabase : RoomDatabase() {
             }
             return Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "app_database")
                     //数据库升级
-                    .addMigrations(MIGRATION_1_2)
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
                     .build().apply {
                         instance = this
                     }
