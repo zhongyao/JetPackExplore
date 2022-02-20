@@ -28,6 +28,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     dataBinding {
         enabled = true
     }
@@ -50,4 +55,7 @@ dependencies {
     //Room
     implementation "androidx.room:room-runtime:2.1.0"
     kapt "androidx.room:room-compiler:2.1.0"
+
+    //WorkManager
+    implementation "androidx.work:work-runtime:2.3.4"
 }
