@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.hongri.jetpack.lifecycles.LifeCycleActivity
+import com.hongri.jetpack.lifecycles.MyLifecycleService
 import com.hongri.jetpack.room.RoomActivity
 import com.hongri.jetpack.viewmodel_livedata.CounterActivity
 import com.hongri.jetpack.workmanager.WorkManagerActivity
@@ -31,8 +32,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         lifeCycleBtn.setOnClickListener {
+            //启动Activity
             val intent = Intent(this, LifeCycleActivity::class.java)
             startActivity(intent)
+
+            //启动Service
+//            val intent = Intent(this, MyLifecycleService::class.java)
+//            startService(intent)
         }
 
         roomBtn.setOnClickListener {

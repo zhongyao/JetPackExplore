@@ -3,13 +3,19 @@
     package="com.hongri.jetpack">
 
     <application
+        android:name=".JetPackApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.JetPackExplore">
-        <activity android:name=".workmanager.WorkManagerActivity"></activity>
+        <service
+            android:name=".lifecycles.MyLifecycleService"
+            android:enabled="true"
+            android:exported="true"></service>
+
+        <activity android:name=".workmanager.WorkManagerActivity" />
         <activity android:name=".room.RoomActivity" />
         <activity android:name=".lifecycles.LifeCycleActivity" />
         <activity android:name=".MainActivity">
