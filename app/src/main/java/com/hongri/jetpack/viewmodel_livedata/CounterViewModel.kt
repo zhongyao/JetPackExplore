@@ -1,10 +1,9 @@
 package com.hongri.jetpack.viewmodel_livedata
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class CounterViewModel(countReserved: Int) : ViewModel() {
+class CounterViewModel : ViewModel() {
 
     /**
      * reference：https://cloud.tencent.com/developer/article/1763734
@@ -18,22 +17,21 @@ class CounterViewModel(countReserved: Int) : ViewModel() {
      * 3、使用 LiveData 保存数据时，由于数据和组件是分离的，所以当组件被销毁时可以保证数据不会丢失。
      *
      */
-    val counter: LiveData<Int> get() = _counter
+    val counter: MutableLiveData<Int> = MutableLiveData()
     /**
      * LiveData【响应式编程组件】：可以包含任何类型的数据，并在数据发生变化的时候通知给观察者
      */
-    private val _counter = MutableLiveData<Int>()
 
     init {
-        _counter.value = countReserved
+        counter.value = 0
     }
 
     fun plusOne() {
-        val count = _counter.value ?: 0
-        _counter.value = count + 1
+        val count = counter.value ?: 0
+        counter.value = count + 1
     }
 
     fun clear() {
-        _counter.value = 0
+        counter.value = 0
     }
 }

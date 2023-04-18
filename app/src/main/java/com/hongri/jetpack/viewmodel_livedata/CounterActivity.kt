@@ -7,12 +7,12 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.hongri.jetpack.R
 
 class CounterActivity : AppCompatActivity() {
-    lateinit var viewModel: CounterViewModel
-    lateinit var sp: SharedPreferences
+    private lateinit var viewModel: CounterViewModel
+    private lateinit var sp: SharedPreferences
     private lateinit var infoText: TextView
     private lateinit var plusBtn: Button
     private lateinit var clearBtn: Button
@@ -22,7 +22,10 @@ class CounterActivity : AppCompatActivity() {
 
         sp = getPreferences(Context.MODE_PRIVATE)
         val countReserved = sp.getInt("count_reserved", 0)
-        viewModel = ViewModelProviders.of(this, CounterViewModelFactory(countReserved)).get(CounterViewModel::class.java)
+
+        viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(application)).get(CounterViewModel::class.java)
+        //保证退出App再进入后，依然可展示上一次的值
+        viewModel.counter.value = countReserved
 
         infoText = findViewById(R.id.infoText)
         plusBtn = findViewById(R.id.plusBtn)
@@ -47,6 +50,7 @@ class CounterActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
+        //缓冲值
         sp.edit().putInt("count_reserved", viewModel.counter.value ?: 0).apply()
     }
 }

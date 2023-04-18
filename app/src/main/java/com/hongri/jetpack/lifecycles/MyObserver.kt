@@ -5,7 +5,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 
-class MyObserver(val lifecycle: Lifecycle) : LifecycleObserver {
+class MyObserver(private val lifecycle: Lifecycle) : LifecycleObserver {
     private val TAG = "MyObserver";
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)

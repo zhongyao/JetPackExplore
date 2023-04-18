@@ -7,7 +7,7 @@ import android.widget.Button
 import com.hongri.jetpack.R
 
 class LifeCycleActivity : AppCompatActivity() {
-    val TAG = "LifeCycleActivity"
+    private val TAG = "LifeCycleActivity"
     private lateinit var currentStateBtn: Button;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
