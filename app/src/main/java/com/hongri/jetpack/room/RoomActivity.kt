@@ -8,7 +8,8 @@ import com.hongri.jetpack.R
 import kotlin.concurrent.thread
 
 /**
- * Jetpack 之 Room 示例
+ * Jetpack 之 Room：
+ * 本质上sqlite抽象层，类似于Retrofit库，Room在开发阶段通过注解标记相关功能，编译时自动生成impl实现类
  */
 class RoomActivity : AppCompatActivity() {
     private val TAG = "RoomActivity";

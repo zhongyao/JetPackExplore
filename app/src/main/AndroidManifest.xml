@@ -10,10 +10,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.JetPackExplore">
+        <activity
+            android:name=".navigation.NavigationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".databinding.DataBindingActivity"
+            android:exported="false" />
+
         <service
             android:name=".lifecycles.MyLifecycleService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
         <activity android:name=".workmanager.WorkManagerActivity" />
         <activity android:name=".room.RoomActivity" />
